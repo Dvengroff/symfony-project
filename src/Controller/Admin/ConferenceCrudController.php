@@ -30,6 +30,7 @@ class ConferenceCrudController extends AbstractCrudController
         $city = TextField::new('city');
         $year = TextField::new('year');
         $isInternational = Field::new('isInternational');
+        $slug = TextField::new('slug');
         $comments = AssociationField::new('comments');
         $id = IntegerField::new('id', 'ID');
 
@@ -38,9 +39,9 @@ class ConferenceCrudController extends AbstractCrudController
         } elseif (Crud::PAGE_DETAIL === $pageName) {
             return [$id, $city, $year, $isInternational, $comments];
         } elseif (Crud::PAGE_NEW === $pageName) {
-            return [$city, $year, $isInternational, $comments];
+            return [$city, $year, $isInternational, $slug, $comments];
         } elseif (Crud::PAGE_EDIT === $pageName) {
-            return [$city, $year, $isInternational, $comments];
+            return [$city, $year, $isInternational, $slug, $comments];
         }
     }
 }
