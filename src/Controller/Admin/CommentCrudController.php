@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\EntityFilter;
 
 class CommentCrudController extends AbstractCrudController
@@ -41,7 +42,7 @@ class CommentCrudController extends AbstractCrudController
         $text = TextareaField::new('text');
         $email = EmailField::new('email');
         $createdAt = DateTimeField::new('createdAt');
-        $photoFilename = TextField::new('photoFilename');
+        $photoFilename = ImageField::new('photoFilename', 'Photo')->setUploadDir('public/uploads/photos');
         $conference = AssociationField::new('conference');
         $id = IntegerField::new('id', 'ID');
 
@@ -52,7 +53,7 @@ class CommentCrudController extends AbstractCrudController
         } elseif (Crud::PAGE_NEW === $pageName) {
             return [$author, $text, $email, $createdAt, $photoFilename, $conference];
         } elseif (Crud::PAGE_EDIT === $pageName) {
-            return [$conference, $createdAt, $author, $email, $text];
+            return [$conference, $createdAt, $author, $email, $photoFilename, $text];
         }
     }
 }
