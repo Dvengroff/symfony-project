@@ -35,12 +35,19 @@ class AppFixtures extends Fixture
                     [
                         'author' => 'John Black',
                         'email' => 'black_johnny@gmail.com',
-                        'text' => 'Hi! Thank you!'
+                        'text' => 'Hi! Thank you!',
+                        'state' => 'published'
                     ],
                     [
                         'author' => 'John Johnson',
                         'email' => 'johnson@yahoo.com',
-                        'text' => 'Conference was very interesting. Organization is in high level.'
+                        'text' => 'Conference was very interesting. Organization is in high level.',
+                        'state' => 'published'
+                    ],
+                    [
+                        'author' => 'Adam Smith',
+                        'email' => 'smith007@gmail.com',
+                        'text' => 'It was a great event!'
                     ]
                 ]
             ],
@@ -52,17 +59,20 @@ class AppFixtures extends Fixture
                     [
                         'author' => 'Bob Schneider',
                         'email' => 'crazybob1990@gmail.com',
-                        'text' => 'Such a lot of interesting people in one place. It is amazing! Thanks organizators!'
+                        'text' => 'Such a lot of interesting people in one place. It is amazing! Thanks organizators!',
+                        'state' => 'published'
                     ],
                     [
                         'author' => 'Paul Paulsen',
                         'email' => 'paulsen@gmail.com',
-                        'text' => 'Thank you very much.'
+                        'text' => 'Thank you very much.',
+                        'state' => 'published'
                     ],
                     [
                         'author' => 'Igor Shilov',
                         'email' => 'shilovigor@yandex.ru',
-                        'text' => 'I am glad to be a part of this event.'
+                        'text' => 'I am glad to be a part of this event.',
+                        'state' => 'published'
                     ]
                 ]
             ],
@@ -81,6 +91,9 @@ class AppFixtures extends Fixture
                     $newComment->setAuthor($comment['author']);
                     $newComment->setEmail($comment['email']);
                     $newComment->setText($comment['text']);
+                    if (!empty($comment['state'])) {
+                        $newComment->setState($comment['state']);
+                    }
                     $manager->persist($newComment);
                 }
             }
