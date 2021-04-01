@@ -38,6 +38,7 @@ class CommentCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+        $state = TextField::new('state');
         $author = TextField::new('author');
         $text = TextareaField::new('text');
         $email = EmailField::new('email');
@@ -47,13 +48,13 @@ class CommentCrudController extends AbstractCrudController
         $id = IntegerField::new('id', 'ID');
 
         if (Crud::PAGE_INDEX === $pageName) {
-            return [$author, $email, $createdAt];
+            return [$author, $email, $createdAt, $state];
         } elseif (Crud::PAGE_DETAIL === $pageName) {
-            return [$id, $author, $text, $email, $createdAt, $photoFilename, $conference];
+            return [$id, $state, $author, $text, $email, $createdAt, $photoFilename, $conference];
         } elseif (Crud::PAGE_NEW === $pageName) {
-            return [$author, $text, $email, $createdAt, $photoFilename, $conference];
+            return [$state, $author, $text, $email, $createdAt, $photoFilename, $conference];
         } elseif (Crud::PAGE_EDIT === $pageName) {
-            return [$conference, $createdAt, $author, $email, $photoFilename, $text];
+            return [$state, $conference, $createdAt, $author, $email, $photoFilename, $text];
         }
     }
 }
